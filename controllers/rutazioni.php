@@ -19,11 +19,14 @@ $app->group('/rutazioni', function ($group) {
         $giornata = $args['giornata'];
         $rutazioni = Rutazione::getRutazioniByGiornata($giornata);
 
-        $httpResponse = new HttpResponse(Status::NotImplemented, "GET all rutazioni with Giornata: $giornata", $rutazioni);
-        // if ($rutazioni)
-        //     $httpResponse = new HttpResponse(Status::Ok, "GET rutazioni with Giornata: $giornata", $rutazioni->toArray());
-        // else
-        //     $httpResponse = new HttpResponse(Status::NotFound, "Not Found rutazioni with Giornata: $giornata");
+        for ($i = 0; $i < count($rutazioni); $i++) {
+            $rutazioni[$i] = $rutazioni[$i]->toArray();
+        }
+
+        if ($rutazioni)
+            $httpResponse = new HttpResponse(Status::Ok, "GET rutazioni with Giornata: $giornata", $rutazioni);
+        else
+            $httpResponse = new HttpResponse(Status::NotFound, "Not Found rutazioni with Giornata: $giornata");
 
         $response->getBody()->write($httpResponse->send());
         $response = $response->withStatus($httpResponse->getStatusCode());
