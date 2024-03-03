@@ -15,7 +15,7 @@ class Rutazione
     private $BonusText;
     private $IsRutata;
 
-    public function __construct(int $Num, int $Giornata, string $Title, string $Description, int $Rutas, int $MonteRuta, int $Malus, string $MalusText, int $Bonus, string $BonusText, bool $IsRutata, ?int $Id = null)
+    public function __construct(int $Num, int $Giornata, string $Title, string $Description, int $Rutas, int $MonteRuta, ?int $Malus, ?string $MalusText, ?int $Bonus, ?string $BonusText, bool $IsRutata, ?int $Id = null)
     {
         $this->Id = $Id;
         $this->Num = $Num;
@@ -120,13 +120,13 @@ class Rutazione
      * @param int $Giornata Rutazione's Giornata
      * @return Rutazione Rutazione or null
      */
-    public static function getRutazioniByGiornata(int $Giornata)/* : Rutazione | null */
+    public static function getRutazioniByGiornata(int $Giornata): Rutazione | null
     {
         $queryText = 'SELECT * FROM `Rutazione` WHERE `Giornata_Rutazione` = ?';
         $query = new Query($queryText, 'i', $Giornata);
         $result = DataBase::executeQuery($query);
 
-        return $result /* ? new Rutazione(
+        return $result ? new Rutazione(
             $result['Num_Rutazione'],
             $result['Giornata_Rutazione'],
             $result['Title_Rutazione'],
@@ -139,6 +139,6 @@ class Rutazione
             $result['BonusText_Rutazione'],
             $result['IsRutata_Rutazione'],
             $result['Id_Rutazione'],
-        ) : null */;
+        ) : null;
     }
 }
