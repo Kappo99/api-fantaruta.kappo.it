@@ -120,7 +120,7 @@ class Rutazione
      * @param int $Giornata Rutazione's Giornata
      * @return Rutazione Rutazione or null
      */
-    public static function getRutazioniByGiornata(int $Giornata): Rutazione | null
+    public static function getRutazioniByGiornata(int $Giornata)/* : Rutazione | null */
     {
         $queryText = 'SELECT * FROM `Rutazione` WHERE `Giornata_Rutazione` = ?';
         $query = new Query($queryText, 'i', $Giornata);
