@@ -118,7 +118,7 @@ class Log
      */
     public static function getLogById(int $Id): Log
     {
-        $queryText = 'CALL Log_Read (?)';
+        $queryText = 'SELECT * FROM Log WHERE `Id_Log` = ?';
         $query = new Query($queryText, 'i', $Id);
         $result = DataBase::executeQuery($query, false);
 
