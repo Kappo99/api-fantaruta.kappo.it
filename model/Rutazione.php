@@ -118,27 +118,32 @@ class Rutazione
     /**
      * Get the Rutazione with specified Giornata
      * @param int $Giornata Rutazione's Giornata
-     * @return Rutazione Rutazione or null
+     * @return Rutazione[] Rutazione or null
      */
-    public static function getRutazioniByGiornata(int $Giornata)/* : Rutazione | null */
+    public static function getRutazioniByGiornata(int $Giornata): mixed
     {
         $queryText = 'SELECT * FROM `Rutazione` WHERE `Giornata_Rutazione` = ?';
         $query = new Query($queryText, 'i', $Giornata);
         $result = DataBase::executeQuery($query);
 
-        return $result/*  ? new Rutazione(
-            $result['Num_Rutazione'],
-            $result['Giornata_Rutazione'],
-            $result['Title_Rutazione'],
-            $result['Description_Rutazione'],
-            $result['Rutas_Rutazione'],
-            $result['MonteRuta_Rutazione'],
-            $result['Malus_Rutazione'],
-            $result['MalusText_Rutazione'],
-            $result['Bonus_Rutazione'],
-            $result['BonusText_Rutazione'],
-            $result['IsRutata_Rutazione'],
-            $result['Id_Rutazione'],
-        ) : null */;
+        $rutazioni = array();
+        foreach ($result as $r) {
+            $rutazioni[] = new Rutazione(
+                $r['Num_Rutazione'],
+                $r['Giornata_Rutazione'],
+                $r['Title_Rutazione'],
+                $r['Description_Rutazione'],
+                $r['Rutas_Rutazione'],
+                $r['MonteRuta_Rutazione'],
+                $r['Malus_Rutazione'],
+                $r['MalusText_Rutazione'],
+                $r['Bonus_Rutazione'],
+                $r['BonusText_Rutazione'],
+                $r['IsRutata_Rutazione'],
+                $r['Id_Rutazione'],
+            );
+        }
+
+        return $rutazioni;
     }
 }
