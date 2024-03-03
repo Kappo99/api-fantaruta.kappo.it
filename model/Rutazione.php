@@ -124,7 +124,7 @@ class Rutazione
     {
         $queryText = 'SELECT * FROM `Rutazione` WHERE `Giornata_Rutazione` = ?';
         $query = new Query($queryText, 'i', $Giornata);
-        $result = DataBase::executeQuery($query, false);
+        $result = DataBase::executeQuery($query);
 
         return $result ? new Rutazione(
             $result['Num_Rutazione'],
