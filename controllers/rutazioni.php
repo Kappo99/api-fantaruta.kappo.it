@@ -17,12 +17,13 @@ $app->group('/rutazioni', function ($group) {
     // GET /rutazioni/{giornata}
     $group->get('/{giornata}', function (Request $request, Response $response, $args) {
         $giornata = $args['giornata'];
-        $rutazioni = Rutazione::getRutazioniByGiornata($giornata);
+        // $rutazioni = Rutazione::getRutazioniByGiornata($giornata);
+        $httpResponse = new HttpResponse(Status::NotImplemented, "GET rutazioni with Giornata: $giornata");
 
-        if ($rutazioni)
-            $httpResponse = new HttpResponse(Status::Ok, "GET rutazioni with Giornata: $giornata", $rutazioni->toArray());
-        else
-            $httpResponse = new HttpResponse(Status::NotFound, "Not Found rutazioni with Giornata: $giornata");
+        // if ($rutazioni)
+        //     $httpResponse = new HttpResponse(Status::Ok, "GET rutazioni with Giornata: $giornata", $rutazioni->toArray());
+        // else
+        //     $httpResponse = new HttpResponse(Status::NotFound, "Not Found rutazioni with Giornata: $giornata");
 
         $response->getBody()->write($httpResponse->send());
         $response = $response->withStatus($httpResponse->getStatusCode());
