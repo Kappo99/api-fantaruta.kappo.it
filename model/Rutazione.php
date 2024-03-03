@@ -126,7 +126,7 @@ class Rutazione
         $query = new Query($queryText, 'i', $Giornata);
         $result = DataBase::executeQuery($query);
 
-        return $result ? new Rutazione(
+        return $result/*  ? new Rutazione(
             $result['Num_Rutazione'],
             $result['Giornata_Rutazione'],
             $result['Title_Rutazione'],
@@ -139,6 +139,6 @@ class Rutazione
             $result['BonusText_Rutazione'],
             $result['IsRutata_Rutazione'],
             $result['Id_Rutazione'],
-        ) : null;
+        ) : null */;
     }
 }
