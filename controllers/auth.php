@@ -5,7 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Firebase\JWT\JWT;
 
 // Endpoint per il login e la creazione del token
-$app->post(API_DIR . '/login', function (Request $request, Response $response) {
+$app->post('/login', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $email = $data['email'];
     $password = $data['password']; // TODO: crittografare la password (md5 NON troppo sicuro)

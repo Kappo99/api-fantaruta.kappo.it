@@ -3,7 +3,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 // Crea un'applicazione per gli utenti
-$app->group(API_DIR . '/rutazioni', function ($group) {
+$app->group('/rutazioni', function ($group) {
 
     // GET /rutazioni
     $group->get('', function (Request $request, Response $response) {
