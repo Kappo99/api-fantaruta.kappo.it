@@ -1,57 +1,25 @@
-RewriteEngine On
-Options -Indexes
-
-# ********** DISABLE CACHING **********
-<IfModule mod_headers.c>
-	Header set Cache-Control "no-cache, no-store, must-revalidate"
-  	Header set Pragma "no-cache"
-	Header set Expires 0
-</IfModule>
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^api/v1 api/v1/index.php [QSA,L]
+    RewriteRule ^ index.php [QSA,L]
 </IfModule>
 
-# Aggiungi uno slash finale
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} !(.*)/$
-RewriteRule ^(.*)$ $1/ [L,R=301]
+# <IfModule mod_headers.c>
+#     SetEnvIf Origin "http(s)?://(www\.)?(studioscf\.it)$" AccessControlAllowOrigin=$0
+#     # Header always set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+#     Header always set Access-Control-Allow-Origin "*"
+#     Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+#     Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+#     Header always set Access-Control-Allow-Credentials true
+# </IfModule>
 
-# ErrorDocument
-ErrorDocument 403 /404.php
-ErrorDocument 404 /404.php
+# Header set Access-Control-Allow-Origin "*"
+# Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+# Header set Access-Control-Allow-Headers "Content-Type, Authorization"
 
-# Redirect (senza .php)
-RewriteRule ^privacy-policy/$ privacy-policy.php [NC,L]
-RewriteRule ^cookie-policy/$ cookie-policy.php [NC,L]
-RewriteRule ^typography/$ typography.php [NC,L]
-RewriteRule ^contatti/$ contatti.php [NC,L]
-
-RewriteRule ^blog/$ blog/blog.php [NC,L]
-# RewriteRule ^blog/TODO/$ blog/articolo.php [NC,L]
-RewriteRule ^blog/([\w-]+)/$ blog/articolo.php?slug=$1 [L,QSA]
-
-# URL con più livelli (/servizi/servizio1)
-RewriteRule ^servizi/servizi-per-famiglie/$ servizi/servizi-per-famiglie.php [NC,L]
-RewriteRule ^servizi/servizi-identita-digitali/$ servizi/servizi-identita-digitali.php [NC,L]
-RewriteRule ^servizi/servizi-per-imprese/$ servizi/servizi-per-imprese.php [NC,L]
-RewriteRule ^servizi/gestione-crisi-impresa/$ servizi/gestione-crisi-impresa.php [NC,L]
-RewriteRule ^servizi/gestione-immobili-locazione/$ servizi/gestione-immobili-locazione.php [NC,L]
-RewriteRule ^servizi/servizi-condominio-edifici/$ servizi/servizi-condominio-edifici.php [NC,L]
-
-# Newsletter
-RewriteRule ^newsletter/richiesta-iscrizione/$ newsletter/richiesta-iscrizione.php [NC,L]
-RewriteRule ^newsletter/iscrizione-confermata/$ newsletter/iscrizione-confermata.php [NC,L]
-RewriteRule ^newsletter/disiscritto/$ newsletter/disiscritto.php [NC,L]
-
-# Area Riservata
-# RewriteRule ^area-riservata/$ area-riservata/index.php [NC,L]
-RewriteRule ^area-riservata/login/$ area-riservata/login.php [NC,L]
-RewriteRule ^area-riservata/articoli/$ area-riservata/articoli.php [NC,L]
-RewriteRule ^area-riservata/articoli/aggiungi/$ area-riservata/articoli-edit.php?action=add [NC,L]
-# RewriteRule ^area-riservata/articoli/modifica/$ area-riservata/articoli-edit.php?action=edit [NC,L]
-RewriteRule ^area-riservata/articoli/modifica/(.*)/$ area-riservata/articoli-edit.php?action=edit&id=$1 [NC,L]
-
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "https://fantaruta.kappo.it"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
