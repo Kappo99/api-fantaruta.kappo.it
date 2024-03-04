@@ -7,8 +7,8 @@ $app->group('/rutasslifica', function ($group) {
 
     // GET /rutasslifica
     $group->get('', function (Request $request, Response $response, $args) {
+        $rutasslifica = Rutasslifica::getRutasslifica();
             $httpResponse = new HttpResponse(Status::NotFound, "Not Found rutasslifica");
-        // $rutasslifica = Rutasslifica::getRutasslifica();
 
         // // for ($i = 0; $i < count($rutasslifica); $i++) {
         // //     $rutasslifica[$i] = $rutasslifica[$i]->toArray();
