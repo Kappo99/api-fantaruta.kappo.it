@@ -68,9 +68,7 @@ class Rutasslifica
      */
     public static function getRutasslifica(): mixed
     {
-        $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `IdRutatore_Rutasslifica`, 
-                        SUM(`MonteRuta_Rutasslifica`) AS `MonteRuta_Rutasslifica`,
-                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Password_Rutatore`
+        $queryText = 'SELECT *
                         FROM `Rutasslifica` 
                             INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
                         GROUP BY `Id_Rutatore`
