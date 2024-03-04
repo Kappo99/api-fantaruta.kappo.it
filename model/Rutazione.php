@@ -98,18 +98,18 @@ class Rutazione
     public function toArray(): array
     {
         return [
-            'Id_Rutazione' => $this->Id,
-            'Num_Rutazione' => $this->Num,
-            'Giornata_Rutazione' => $this->Giornata,
-            'Title_Rutazione' => $this->Title,
-            'Description_Rutazione' => $this->Description,
-            'Rutas_Rutazione' => $this->Rutas,
-            'MonteRuta_Rutazione' => $this->MonteRuta,
-            'Malus_Rutazione' => $this->Malus,
-            'MalusText_Rutazione' => $this->MalusText,
-            'Bonus_Rutazione' => $this->Bonus,
-            'BonusText_Rutazione' => $this->BonusText,
-            'IsRutata_Rutazione' => $this->IsRutata,
+            'Id' => $this->Id,
+            'Num' => $this->Num,
+            'Giornata' => $this->Giornata,
+            'Title' => $this->Title,
+            'Description' => $this->Description,
+            'Rutas' => $this->Rutas,
+            'MonteRuta' => $this->MonteRuta,
+            'Malus' => $this->Malus,
+            'MalusText' => $this->MalusText,
+            'Bonus' => $this->Bonus,
+            'BonusText' => $this->BonusText,
+            'IsRutata' => $this->IsRutata,
         ];
     }
 
