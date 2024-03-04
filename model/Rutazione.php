@@ -118,7 +118,7 @@ class Rutazione
     /**
      * Get the Rutazione with specified Giornata
      * @param int $Giornata Rutazione's Giornata
-     * @return Rutazione[] Rutazione or null
+     * @return mixed [0]: Rutazione[] or null, [1]: num Rutazioni, [2]: num Rutazioni Rutate
      */
     public static function getRutazioniByGiornata(int $Giornata): mixed
     {
@@ -144,6 +144,16 @@ class Rutazione
             );
         }
 
-        return $rutazioni;
+        $queryText = 'SELECT COUNT(*) AS Count FROM `Rutazione`';
+        $query = new Query($queryText);
+        $result = DataBase::executeQuery($query, false);
+        $count = $result['Count'];
+
+        $queryText = 'SELECT COUNT(*) AS NumRutate FROM `Rutazione` WHERE `IsRutata` = 1';
+        $query = new Query($queryText);
+        $result = DataBase::executeQuery($query, false);
+        $numRutate = $result['NumRutate'];
+
+        return [$rutazioni, $count, $numRutate];
     }
 }
