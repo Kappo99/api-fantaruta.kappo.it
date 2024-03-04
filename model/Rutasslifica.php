@@ -68,8 +68,13 @@ class Rutasslifica
      */
     public static function getRutasslifica(): mixed
     {
-        $queryText = 'SELECT *
-                        FROM `Rutasslifica` ';
+        $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `IdRutatore_Rutasslifica`, 
+                        SUM(`MonteRuta_Rutasslifica`) AS `MonteRuta_Rutasslifica`,
+                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Password_Rutatore`
+                        FROM `Rutasslifica` 
+                            INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
+                        GROUP BY `Id_Rutatore`
+                        ORDER BY `MonteRuta_Rutasslifica` DESC';
         $query = new Query($queryText);
         $result = DataBase::executeQuery($query);
 
