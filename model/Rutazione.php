@@ -147,13 +147,13 @@ class Rutazione
         $queryText = 'SELECT COUNT(*) AS Count FROM `Rutazione` WHERE `Giornata_Rutazione` = ?';
         $query = new Query($queryText, 'i', $Giornata);
         $result = DataBase::executeQuery($query, false);
-        // $count = $result['Count'];
+        $count = $result['Count'];
 
         // $queryText = 'SELECT COUNT(*) AS NumRutate FROM `Rutazione` WHERE `Giornata_Rutazione` = ? AND `IsRutata_Rutazione` = 1';
         // $query = new Query($queryText, 'i', $Giornata);
         // $result = DataBase::executeQuery($query, false);
         // $numRutate = $result['NumRutate'];
 
-        return $rutazioni;
+        return [$rutazioni, $count];
     }
 }
