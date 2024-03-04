@@ -68,7 +68,7 @@ class Rutasslifica
      */
     public static function getRutasslifica(): mixed
     {
-        $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `IdRutatore_Rutasslifica`, 
+        $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `Id_Rutatore_Rutasslifica`, 
                         SUM(`MonteRuta_Rutasslifica`) AS `MonteRuta_Rutasslifica`,
                         `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Password_Rutatore`
                         FROM `Rutasslifica` 
@@ -82,7 +82,7 @@ class Rutasslifica
         // foreach ($result as $r) {
         //     $rutasslifica[] = new Rutasslifica(
         //         $r['Giornata_Rutasslifica'],
-        //         $r['IdRutatore_Rutasslifica'],
+        //         $r['Id_Rutatore_Rutasslifica'],
         //         $r['MonteRuta_Rutasslifica'],
         //         $r['Id_Rutasslifica'],
         //         new Rutatore(
