@@ -16,7 +16,7 @@ $app->group('/rutasslifica', function ($group) {
         if ($rutasslifica)
             $httpResponse = new HttpResponse(
                 Status::Ok,
-                "GET all rutasslifica with ",
+                "GET all rutasslifica",
                 array ('rutasslifica' => $rutasslifica)
             );
         else
