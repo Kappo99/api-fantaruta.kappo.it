@@ -21,7 +21,7 @@ $app->group('/rutazioni', function ($group) {
 
         $rutazioni = $result[0];
         $count = $result[1];
-        /* $numRutate = $result[2] */;
+        // /* $numRutate = $result[2] */;
 
         for ($i = 0; $i < count($rutazioni); $i++) {
             $rutazioni[$i] = $rutazioni[$i]->toArray();

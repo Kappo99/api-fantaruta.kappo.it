@@ -154,6 +154,6 @@ class Rutazione
         $result = DataBase::executeQuery($query, false);
         $numRutate = $result['NumRutate'];
 
-        return [$rutazioni, $count];
+        return [$rutazioni, $count, $numRutate];
     }
 }
