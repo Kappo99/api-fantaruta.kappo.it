@@ -24,7 +24,7 @@ $app->group('/rutazioni', function ($group) {
         }
 
         if ($rutazioni)
-            $httpResponse = new HttpResponse(Status::Ok, "GET rutazioni with Giornata: $giornata", array('rutazioni' => $rutazioni));
+            $httpResponse = new HttpResponse(Status::Ok, "GET all rutazioni with Giornata: $giornata", array('rutazioni' => $rutazioni));
         else
             $httpResponse = new HttpResponse(Status::NotFound, "Not Found rutazioni with Giornata: $giornata");
 
