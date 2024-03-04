@@ -69,10 +69,7 @@ class Rutasslifica
     public static function getRutasslifica(): mixed
     {
         $queryText = 'SELECT *
-                        FROM `Rutasslifica` 
-                            INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
-                        GROUP BY `Id_Rutatore`
-                        ORDER BY `MonteRuta_Rutasslifica` DESC';
+                        FROM `Rutasslifica` ';
         $query = new Query($queryText);
         $result = DataBase::executeQuery($query);
 
