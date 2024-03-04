@@ -73,22 +73,22 @@ class Rutasslifica
         $query = new Query($queryText);
         $result = DataBase::executeQuery($query);
 
-        $Rutasslifica = array();
-        foreach ($result as $r) {
-            $Rutasslifica[] = new Rutasslifica(
-                $r['Giornata_Rutasslifica'],
-                $r['IdRutatore_Rutasslifica'],
-                $r['MonteRuta_Rutasslifica'],
-                $r['Id_Rutasslifica'],
-                new Rutatore(
-                    $r['Num_Rutatore'],
-                    $r['Name_Rutatore'],
-                    $r['Password_Rutatore'],
-                    $r['Id_Rutatore'],
-                )
-            );
-        }
+        // $rutasslifica = array();
+        // foreach ($result as $r) {
+        //     $rutasslifica[] = new Rutasslifica(
+        //         $r['Giornata_Rutasslifica'],
+        //         $r['IdRutatore_Rutasslifica'],
+        //         $r['MonteRuta_Rutasslifica'],
+        //         $r['Id_Rutasslifica'],
+        //         new Rutatore(
+        //             $r['Num_Rutatore'],
+        //             $r['Name_Rutatore'],
+        //             $r['Password_Rutatore'],
+        //             $r['Id_Rutatore'],
+        //         )
+        //     );
+        // }
 
-        return $Rutasslifica;
+        return $result;
     }
 }
