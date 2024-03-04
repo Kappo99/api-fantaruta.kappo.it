@@ -3,24 +3,24 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 // Crea un'applicazione per gli utenti
-$app->group('/rutabonus', function ($group) {
+$app->group('/rutasslifica', function ($group) {
 
-    // GET /rutabonus
+    // GET /rutasslifica
     $group->get('', function (Request $request, Response $response, $args) {
-        $rutabonus = RutaBonus::getRutaBonus();
+        $rutasslifica = Rutasslifica::getRutasslifica();
 
-        for ($i = 0; $i < count($rutabonus); $i++) {
-            $rutabonus[$i] = $rutabonus[$i]->toArray();
+        for ($i = 0; $i < count($rutasslifica); $i++) {
+            $rutasslifica[$i] = $rutasslifica[$i]->toArray();
         }
 
-        if ($rutabonus)
+        if ($rutasslifica)
             $httpResponse = new HttpResponse(
                 Status::Ok,
-                "GET all rutabonus",
-                array ('rutabonus' => $rutabonus)
+                "GET all rutasslifica with ",
+                array ('rutasslifica' => $rutasslifica)
             );
         else
-            $httpResponse = new HttpResponse(Status::NotFound, "Not Found rutabonus");
+            $httpResponse = new HttpResponse(Status::NotFound, "Not Found rutasslifica");
 
         $response->getBody()->write($httpResponse->send());
         $response = $response->withStatus($httpResponse->getStatusCode());
