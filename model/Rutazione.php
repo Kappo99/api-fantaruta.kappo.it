@@ -149,7 +149,7 @@ class Rutazione
         $result = DataBase::executeQuery($query, false);
         $count = $result['Count'];
 
-        $queryText = 'SELECT COUNT(*) AS NumRutate FROM `Rutazione` WHERE `IsRutata` = 1';
+        $queryText = 'SELECT COUNT(*) AS NumRutate FROM `Rutazione` WHERE `IsRutata_Rutazione` = 1';
         $query = new Query($queryText);
         $result = DataBase::executeQuery($query, false);
         $numRutate = $result['NumRutate'];
