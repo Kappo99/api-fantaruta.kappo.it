@@ -9,9 +9,9 @@ $app->group('/rutasslifica', function ($group) {
     $group->get('', function (Request $request, Response $response, $args) {
         $rutasslifica = Rutasslifica::getRutasslifica();
 
-        // // for ($i = 0; $i < count($rutasslifica); $i++) {
-        // //     $rutasslifica[$i] = $rutasslifica[$i]->toArray();
-        // // }
+        for ($i = 0; $i < count($rutasslifica); $i++) {
+            $rutasslifica[$i] = $rutasslifica[$i]->toArray();
+        }
 
         if ($rutasslifica)
             $httpResponse = new HttpResponse(
