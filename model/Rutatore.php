@@ -58,10 +58,10 @@ class Rutatore
     public function toArray(): array
     {
         return [
-            'Id_Rutatore' => $this->Id,
-            'Num_Rutatore' => $this->Num,
-            'Name_Rutatore' => $this->Name,
-            'Password_Rutatore' => $this->Password,
+            'Id' => $this->Id,
+            'Num' => $this->Num,
+            'Name' => $this->Name,
+            'Password' => $this->Password,
         ];
     }
 
