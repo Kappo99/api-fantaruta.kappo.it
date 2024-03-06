@@ -10,5 +10,4 @@
 
     require_once PATH_DATABASE;
     
-
     DataBase::initialize();
