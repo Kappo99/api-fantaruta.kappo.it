@@ -81,7 +81,8 @@ class Formazione
             FROM `Formazione` 
                 INNER JOIN `Rutatore` ON `Id_Rutatore_Formazione` = `Id_Rutatore`
                 INNER JOIN `Rutazione` ON `Id_Rutazione_Formazione` = `Id_Rutazione`
-            WHERE `Giornata_Formazione` = ?';
+            WHERE `Giornata_Formazione` = ?
+            ORDER BY `Id_Rutatore`, `Id_Rutazione`';
         $query = new Query($queryText, 'i', $Giornata);
         $result = DataBase::executeQuery($query);
 
