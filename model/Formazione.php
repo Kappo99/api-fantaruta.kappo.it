@@ -70,9 +70,9 @@ class Formazione
     // ===========================================================================================
 
     /**
-     * Get the Rutazione with specified Giornata
-     * @param int $Giornata Rutazione's Giornata
-     * @return mixed [0]: Rutazione[] or null, [1]: num Formazioni, [2]: num Formazioni Rutate
+     * Get the Formazione with specified Giornata
+     * @param int $Giornata Formazione's Giornata
+     * @return mixed Formazione[] or null
      */
     public static function getFormazioniByGiornata(int $Giornata): mixed
     {
