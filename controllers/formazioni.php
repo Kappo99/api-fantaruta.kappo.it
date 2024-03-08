@@ -17,14 +17,14 @@ $app->group('/formazioni', function ($group) {
     // GET /formazioni/{giornata}
     $group->get('/{giornata}', function (Request $request, Response $response, $args) {
         $giornata = $args['giornata'];
-        $formazioni = Formazione::getFormazioniByGiornata($giornata);
+        $result = Formazione::getFormazioniByGiornata($giornata);
 
-        // $formazioni = array();
-        // foreach ($result as $r) {
-        //     if (!isset($formazioni[$r['IdRutatore']]))
-        //         $formazioni[$r['IdRutatore']] = array('rutatore' => $r['Rutatore']->toArray());
+        $formazioni = array();
+        foreach ($result as $r) {
+            if (!isset($formazioni[$r['IdRutatore']]))
+                $formazioni[$r['IdRutatore']] = array('rutatore' => $r['Rutatore']->toArray());
 
-        // }
+        }
 
         if ($formazioni)
             $httpResponse = new HttpResponse(
