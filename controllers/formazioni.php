@@ -20,9 +20,9 @@ $app->group('/formazioni', function ($group) {
         $result = Formazione::getFormazioniByGiornata($giornata);
 
         $formazioni = array ();
-        foreach ($result as $r) {
+        for ($i = 0; $i < count($result); $i++) {
             // if (!isset($formazioni[$r['IdRutatore']]))
-            $formazioni = array ('rutatore' => 1);
+            $formazioni[$result[$i]['IdRutatore']] = array ('rutatore' => $result[$i]['Rutatore']->toArray());
 
         }
 
