@@ -21,9 +21,11 @@ $app->group('/formazioni', function ($group) {
 
         $formazioni = array ();
         foreach ($result as $r) {
-            // if (!isset($formazioni[$r['IdRutatore']]))
-            $formazioni[$r->getIdRutatore()] = array ('rutatore' => $r->getRutatore()->toArray());
-
+            if (!isset ($formazioni[$r->getIdRutatore()]))
+                $formazioni[$r->getIdRutatore()] = array ('rutatore' => $r->getRutatore()->toArray());
+            if (!isset ($formazioni[$r->getIdRutatore()]['rutazioni']))
+                $formazioni[$r->getIdRutatore()]['rutazioni'] = array ();
+            $formazioni[$r->getIdRutatore()]['rutazioni'][] = $r->getRutazione()->toArray();
         }
 
         if ($formazioni)
