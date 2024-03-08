@@ -22,7 +22,7 @@ $app->group('/formazioni', function ($group) {
         $formazioni = array ();
         foreach ($result as $r) {
             // if (!isset($formazioni[$r['IdRutatore']]))
-            $formazioni = array ('rutatore' => $r['Rutatore']->toArray());
+            $formazioni = array ('rutatore' => $r['Rutatore']);
 
         }
 
