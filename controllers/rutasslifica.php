@@ -28,7 +28,7 @@ $app->group('/rutasslifica', function ($group) {
     });
 
     // GET /rutasslifica/{giornata}
-    $group->get('{giornata}', function (Request $request, Response $response, $args) {
+    $group->get('/{giornata}', function (Request $request, Response $response, $args) {
         $giornata = $args['giornata'];
         $result = Rutasslifica::getRutasslificaByGiornata($giornata);
 
