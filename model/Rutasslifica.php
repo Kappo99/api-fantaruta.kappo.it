@@ -96,4 +96,67 @@ class Rutasslifica
 
         return $rutasslifica;
     }
+
+    /**
+     * Get the Rutasslifica List until specified Giornata
+     * @return mixed 2x Rutasslifica[] List or null (specified Giornata and prec)
+     */
+    public static function getRutasslificaByGiornata($giornata): mixed
+    {
+        $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `Id_Rutatore_Rutasslifica`, 
+                        SUM(`MonteRuta_Rutasslifica`) AS `MonteRuta_Rutasslifica`,
+                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Password_Rutatore`
+                        FROM `Rutasslifica` 
+                            INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
+                        WHERE `Giornata_Rutasslifica` <= ?
+                        GROUP BY `Id_Rutatore`
+                        ORDER BY `MonteRuta_Rutasslifica` DESC';
+        $query = new Query($queryText, 'i', $giornata);
+        $result = DataBase::executeQuery($query);
+
+        $rutasslifica = array();
+        foreach ($result as $r) {
+            $rutasslifica[] = new Rutasslifica(
+                $r['Giornata_Rutasslifica'],
+                $r['Id_Rutatore_Rutasslifica'],
+                $r['MonteRuta_Rutasslifica'],
+                $r['Id_Rutasslifica'],
+                new Rutatore(
+                    $r['Num_Rutatore'],
+                    $r['Name_Rutatore'],
+                    $r['Password_Rutatore'],
+                    $r['Id_Rutatore'],
+                )
+            );
+        }
+
+        $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `Id_Rutatore_Rutasslifica`, 
+                        SUM(`MonteRuta_Rutasslifica`) AS `MonteRuta_Rutasslifica`,
+                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Password_Rutatore`
+                        FROM `Rutasslifica` 
+                            INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
+                        WHERE `Giornata_Rutasslifica` <= ?
+                        GROUP BY `Id_Rutatore`
+                        ORDER BY `MonteRuta_Rutasslifica` DESC';
+        $query = new Query($queryText, 'i', $giornata - 1);
+        $result = DataBase::executeQuery($query);
+
+        $rutasslificaPrev = array();
+        foreach ($result as $r) {
+            $rutasslificaPrev[] = new Rutasslifica(
+                $r['Giornata_Rutasslifica'],
+                $r['Id_Rutatore_Rutasslifica'],
+                $r['MonteRuta_Rutasslifica'],
+                $r['Id_Rutasslifica'],
+                new Rutatore(
+                    $r['Num_Rutatore'],
+                    $r['Name_Rutatore'],
+                    $r['Password_Rutatore'],
+                    $r['Id_Rutatore'],
+                )
+            );
+        }
+
+        return [$rutasslifica, $rutasslificaPrev];
+    }
 }
