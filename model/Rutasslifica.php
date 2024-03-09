@@ -110,7 +110,7 @@ class Rutasslifica
                             INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
                         WHERE `Giornata_Rutasslifica` <= ?
                         GROUP BY `Id_Rutatore`
-                        ORDER BY `MonteRuta_Rutasslifica` DESC';
+                        ORDER BY `MonteRuta_Rutasslifica` DESC, `Id_Rutatore`';
         $query = new Query($queryText, 'i', $giornata);
         $result = DataBase::executeQuery($query);
 
@@ -137,7 +137,7 @@ class Rutasslifica
                             INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
                         WHERE `Giornata_Rutasslifica` <= ?
                         GROUP BY `Id_Rutatore`
-                        ORDER BY `MonteRuta_Rutasslifica` DESC';
+                        ORDER BY `MonteRuta_Rutasslifica` DESC, `Id_Rutatore`';
         $query = new Query($queryText, 'i', $giornata - 1);
         $result = DataBase::executeQuery($query);
 
