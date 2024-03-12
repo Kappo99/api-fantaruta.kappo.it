@@ -76,7 +76,7 @@ class Formazione
      */
     public static function getFormazioniByGiornata(int $Giornata): mixed
     {
-        $queryText = 
+        $queryText =
             'SELECT * 
             FROM `Formazione` 
                 INNER JOIN `Rutatore` ON `Id_Rutatore_Formazione` = `Id_Rutatore`
@@ -117,5 +117,31 @@ class Formazione
         }
 
         return $formazioni;
+    }
+
+    /**
+     * Insert the Formazione List
+     * @param mixed $formazioni Formazione's List
+     * @return int id of the last Formazione added
+     */
+    public static function insertFormazioniByList(mixed $formazioni): int
+    {
+        $giornata = $formazioni[0]->getGiornata();
+        $idRutatore = $formazioni[0]->getIdRutatore();
+
+        $queryText = 'DELETE FROM `Formazione` WHERE `Giornata_Formazione` = ? AND `Id_Rutatore_Formazione` = ?';
+        $query = new Query($queryText, 'ii', $giornata, $idRutatore);
+        $result = DataBase::executeQuery($query);
+
+        $values = array();
+        foreach ($formazioni as $formazione)
+            $values[] = '(' . $formazione->getGiornata() . ',' . $formazione->getIdRutatore() . ',' . $formazione->getIdRutazione() . ')';
+        // $values = substr($values, 0, strlen($values) - 2);
+        $queryText = 'INSERT INTO `Formazione`(`Giornata_Formazione`,`Id_Rutatore_Formazione`,`Id_Rutazione_Formazione`)
+                        VALUES ' . implode(',', $values);
+        $query = new Query($queryText);
+        $result = DataBase::executeQuery($query);
+
+        return $result;
     }
 }

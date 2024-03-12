@@ -42,4 +42,38 @@ $app->group('/formazioni', function ($group) {
         return $response;
     });
 
+    // POST /formazioni/{giornata}
+    $group->post('/{giornata}', function (Request $request, Response $response, $args) {
+        $giornata = $args['giornata'];
+        $data = $request->getParsedBody();
+
+        if (!isset ($data['rutazioni']))
+            throw new InvalidArgumentException('Parametri mancanti');
+
+        $rutazioni = json_decode($data['rutazioni']);
+
+        if (count($rutazioni) <= 0)
+            throw new InvalidArgumentException('Lista vuota');
+
+        // $decodedToken = $request->getAttribute('token');
+        // $idRutatore = $decodedToken->Id_Rutatore;
+        $idRutatore = 13;
+
+        $formazioni = array();
+        foreach ($rutazioni as $idRutazione) {
+            $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione);
+        }
+
+        $lastId = Formazione::insertFormazioniByList($formazioni);
+
+        if ($lastId > 0)
+            $httpResponse = new HttpResponse(Status::Ok, "INSERT all formazioni to Rutatore", $lastId);
+        else
+            $httpResponse = new HttpResponse(Status::InternalServerError, "Error INSERT all formazioni to Rutatore");
+
+        $response->getBody()->write($httpResponse->send());
+        $response = $response->withStatus($httpResponse->getStatusCode());
+        return $response;
+    })/* ->add(new AuthenticationMiddleware()) */;
+
 })/* ->add(new AuthenticationMiddleware()) */ ; //* Aggiungi il Middleware di autenticazione a tutto il gruppo
