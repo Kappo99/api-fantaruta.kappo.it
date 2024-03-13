@@ -7,10 +7,10 @@ use Firebase\JWT\JWT;
 // Endpoint per il login e la creazione del token
 $app->post('/login', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    $email = $data['email'];
+    $num = $data['num'];
     $password = $data['password'];
 
-    $rutatore = Rutatore::authenticateUser($email, $password);
+    $rutatore = Rutatore::authenticateUser($num, $password);
 
     if ($rutatore !== null) {
         // Se l'autenticazione ha successo, crea il token JWT
