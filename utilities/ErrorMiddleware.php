@@ -19,7 +19,11 @@ class ErrorMiddleware
             $log = new Log(null, $method, $uri, $params, $state);
             $log_id = Log::addLog($log);
 
-            $response = $handler->handle($request)->withHeader('Content-Type', 'application/json');
+            $response = $handler->handle($request)
+                        ->withHeader('Content-Type', 'application/json')
+                        ->withHeader('Access-Control-Allow-Origin', '*')
+                        ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+                        ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');;
 
             // $error = $response->getStatusCode() != 200 ? $response->getBody()->getContents() : null;
             // TODO: Aggiornare il LOG con Error_Log se StatusCode !== 200
