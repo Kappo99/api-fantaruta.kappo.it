@@ -41,4 +41,23 @@ $app->group('/rutazioni', function ($group) {
         return $response;
     });
 
+    // GET /rutazioni/{id}
+    $group->put('/{id}', function (Request $request, Response $response, $args) {
+        $id = $args['id'];
+        $updated = Rutazione::updateIsRutataById($id);
+
+        if ($updated > 0)
+            $httpResponse = new HttpResponse(
+                Status::Ok,
+                "UPDATE Rutazione $id isRutata status",
+                $updated
+            );
+        else
+            $httpResponse = new HttpResponse(Status::InternalServerError, "Not UPDATE Rutazione $id isRutata status");
+
+        $response->getBody()->write($httpResponse->send());
+        $response = $response->withStatus($httpResponse->getStatusCode());
+        return $response;
+    })->add(new AuthenticationMiddleware());
+
 })/* ->add(new AuthenticationMiddleware()) */ ; //* Aggiungi il Middleware di autenticazione a tutto il gruppo

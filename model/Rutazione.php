@@ -116,7 +116,7 @@ class Rutazione
     // ===========================================================================================
 
     /**
-     * Get the Rutazione with specified Giornata
+     * Get the Rutazione's List with specified Giornata
      * @param int $Giornata Rutazione's Giornata
      * @return mixed [0]: Rutazione[] or null, [1]: num Rutazioni, [2]: num Rutazioni Rutate
      */
@@ -155,5 +155,19 @@ class Rutazione
         $numRutate = $result['NumRutate'];
 
         return [$rutazioni, $count, $numRutate];
+    }
+
+    /**
+     * Update the Rutazione with specified Id
+     * @param int $id Rutazione's Id
+     * @return int number of updated rows
+     */
+    public static function updateIsRutataById(int $Id): int
+    {
+        $queryText = "UPDATE `Rutazione` SET `IsRutata_Rutazione` = NOT `IsRutata_Rutazione` WHERE `Id_Rutazione` = ?";
+        $query = new Query($queryText, 'i', $Id);
+        $result = DataBase::executeQuery($query);
+
+        return $result;
     }
 }
