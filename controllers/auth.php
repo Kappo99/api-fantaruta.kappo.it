@@ -8,7 +8,7 @@ use Firebase\JWT\JWT;
 $app->post('/login', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $email = $data['email'];
-    $password = $data['password']; // TODO: crittografare la password (md5 NON troppo sicuro)
+    $password = $data['password'];
 
     $rutatore = Rutatore::authenticateUser($email, $password);
 

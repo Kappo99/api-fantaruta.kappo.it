@@ -85,7 +85,7 @@ class Rutatore
             $result['Password_Rutatore'],
             $result['Id_Rutatore'],
         ) : null;
-        $passwordOk = password_verify($Password, $Rutatore->getPassword());
+        $passwordOk = $Password == $Rutatore->getPassword();
 
         return $passwordOk ? $Rutatore : null;
     }
