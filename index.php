@@ -15,9 +15,9 @@ $app = AppFactory::create();
 // Aggiungi il middleware di gestione degli errori
 $app->add(new ErrorMiddleware());
 
-$app->options('/{routes:.+}', function ($request, $response, $args) {
-    return $response;
-});
+// $app->options('/{routes:.+}', function ($request, $response, $args) {
+//     return $response;
+// });
 
 $app->add(function ($request, $handler) {
     $response = $handler->handle($request);
