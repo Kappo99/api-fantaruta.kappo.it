@@ -55,9 +55,8 @@ $app->group('/formazioni', function ($group) {
         if (count($rutazioni) <= 0)
             throw new InvalidArgumentException('Lista vuota');
 
-        // $decodedToken = $request->getAttribute('token');
-        // $idRutatore = $decodedToken->Id_Rutatore;
-        $idRutatore = 13;
+        $decodedToken = $request->getAttribute('token');
+        $idRutatore = $decodedToken->Id_Rutatore;
 
         $formazioni = array();
         foreach ($rutazioni as $idRutazione) {
@@ -74,6 +73,6 @@ $app->group('/formazioni', function ($group) {
         $response->getBody()->write($httpResponse->send());
         $response = $response->withStatus($httpResponse->getStatusCode());
         return $response;
-    })/* ->add(new AuthenticationMiddleware()) */;
+    })->add(new AuthenticationMiddleware());
 
 })/* ->add(new AuthenticationMiddleware()) */ ; //* Aggiungi il Middleware di autenticazione a tutto il gruppo
