@@ -15,7 +15,7 @@ $app->post('/login', function (Request $request, Response $response) {
     if ($rutatore !== null) {
         // Se l'autenticazione ha successo, crea il token JWT
         $issuedAt = time();
-        $expirationTime = $issuedAt + 3600 * 24; // Token valido per 1 giorno
+        $expirationTime = $issuedAt + 3600 * 24 * 10; // Token valido per 10 giorni
 
         $payload = [
             'Id_Rutatore' => $rutatore->getId(),
