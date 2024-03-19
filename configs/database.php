@@ -11,7 +11,7 @@
     // }
     /* else */ if (ONLINE_CONNECTION)
     {
-        define("DB_HOST", "fantaruta.kappo.it");
+        define("DB_HOST", "localhost");
         define("DB_USERNAME", "u253831929_Ruta");
         define("DB_PASSWORD", "w$#G]YO&8");
         define("DB_NAME", "u253831929_FantaRuta");
