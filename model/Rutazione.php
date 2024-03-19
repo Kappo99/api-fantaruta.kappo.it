@@ -158,6 +158,21 @@ class Rutazione
     }
 
     /**
+     * Get the Rutazione's Count with specified Id
+     * @param int $Id Rutazione's Id
+     * @return int Count of Rutatori played this Rutazione
+     */
+    public static function getRutazioniCountById(int $Id): mixed
+    {
+        $queryText = 'SELECT COUNT(*) AS `Count` FROM `Formazione` WHERE `Id_Rutazione_Formazione` = ?';
+        $query = new Query($queryText, 'i', $Id);
+        $result = DataBase::executeQuery($query, false);
+        $count = $result['Count'];
+
+        return $count;
+    }
+
+    /**
      * Update the Rutazione with specified Id
      * @param int $id Rutazione's Id
      * @return int number of updated rows

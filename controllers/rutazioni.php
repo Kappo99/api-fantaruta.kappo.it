@@ -41,6 +41,22 @@ $app->group('/rutazioni', function ($group) {
         return $response;
     });
 
+    // GET /rutazioni/{id}/count
+    $group->get('/{id}/count', function (Request $request, Response $response, $args) {
+        $id = $args['idgiornata'];
+        $count = Rutazione::getRutazioniCountById($id);
+
+        $httpResponse = new HttpResponse(
+            Status::Ok,
+            "GET rutazioni Count with Id: $id",
+            array ('count' => $count)
+        );
+
+        $response->getBody()->write($httpResponse->send());
+        $response = $response->withStatus($httpResponse->getStatusCode());
+        return $response;
+    });
+
     // GET /rutazioni/{id}
     $group->put('/{id}', function (Request $request, Response $response, $args) {
         $id = $args['id'];
