@@ -6,13 +6,15 @@ class Rutatore
     private $Num;
     private $Name;
     private $Password;
+    private $Role;
 
-    public function __construct(int $Num, string $Name, string $Password, ?int $Id = null)
+    public function __construct(int $Num, string $Name, string $Password, string $Role = 'User', ?int $Id = null)
     {
         $this->Id = $Id;
         $this->Num = $Num;
         $this->Name = $Name;
         $this->Password = $Password;
+        $this->Role = $Role;
     }
 
     public function __toString(): string
@@ -37,6 +39,10 @@ class Rutatore
     {
         $this->Password = $Password;
     }
+    public function setRole(string $Role)
+    {
+        $this->Role = $Role;
+    }
 
     public function getId(): int
     {
@@ -54,6 +60,10 @@ class Rutatore
     {
         return $this->Password;
     }
+    public function getRole(): string
+    {
+        return $this->Role;
+    }
 
     public function toArray(): array
     {
@@ -62,6 +72,7 @@ class Rutatore
             'Num' => $this->Num,
             'Name' => $this->Name,
             'Password' => $this->Password,
+            'Role' => $this->Role,
         ];
     }
 
@@ -83,6 +94,7 @@ class Rutatore
             $result['Num_Rutatore'],
             $result['Name_Rutatore'],
             $result['Password_Rutatore'],
+            $result['Role_Rutatore'],
             $result['Id_Rutatore'],
         ) : null;
         $passwordOk = $Password == $Rutatore->getPassword();
@@ -105,6 +117,7 @@ class Rutatore
             $result['Num_Rutatore'],
             $result['Name_Rutatore'],
             $result['Password_Rutatore'],
+            $result['Role_Rutatore'],
             $result['Id_Rutatore'],
         ) : null;
     }

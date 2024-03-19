@@ -20,6 +20,7 @@ $app->post('/login', function (Request $request, Response $response) {
         $payload = [
             'Id_Rutatore' => $rutatore->getId(),
             'Name_Rutatore' => $rutatore->getName(),
+            'Role_Rutatore' => $rutatore->getRole(),
             'iat' => $issuedAt,
             'exp' => $expirationTime,
         ];
@@ -29,7 +30,7 @@ $app->post('/login', function (Request $request, Response $response) {
         $httpResponse = new HttpResponse(
             Status::Ok,
             "Login avvenuto con successo",
-            ['token' => $token, 'idRutatore' => $rutatore->getId()]
+            ['token' => $token, 'idRutatore' => $rutatore->getId(), 'roleRutatore' => $rutatore->getRole()]
         );
     } else {
         $httpResponse = new HttpResponse(Status::Unauthorized, "Errore di autenticazione");
