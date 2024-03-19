@@ -43,7 +43,7 @@ $app->group('/rutazioni', function ($group) {
 
     // GET /rutazioni/{id}/count
     $group->get('/{id}/count', function (Request $request, Response $response, $args) {
-        $id = $args['idgiornata'];
+        $id = $args['id'];
         $count = Rutazione::getRutazioniCountById($id);
 
         $httpResponse = new HttpResponse(
