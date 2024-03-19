@@ -5,18 +5,14 @@ class RutaBonus
     private $Id;
     private $Title;
     private $Description;
-    private $Hint;
-    private $PS;
     private $Image;
     private $IsActive;
 
-    public function __construct(string $Title, string $Description, string $Hint, string $PS, string $Image, bool $IsActive, ?int $Id = null)
+    public function __construct(string $Title, string $Description, string $Image, bool $IsActive, ?int $Id = null)
     {
         $this->Id = $Id;
         $this->Title = $Title;
         $this->Description = $Description;
-        $this->Hint = $Hint;
-        $this->PS = $PS;
         $this->Image = $Image;
         $this->IsActive = $IsActive;
     }
@@ -44,14 +40,6 @@ class RutaBonus
     {
         return $this->Description;
     }
-    public function getHint(): string
-    {
-        return $this->Hint;
-    }
-    public function getPS(): string
-    {
-        return $this->PS;
-    }
     public function getImage(): string
     {
         return $this->Image;
@@ -67,8 +55,6 @@ class RutaBonus
             'Id' => $this->Id,
             'Title' => $this->Title,
             'Description' => $this->Description,
-            'Hint' => $this->Hint,
-            'PS' => $this->PS,
             'Image' => $this->Image,
             'IsActive' => $this->IsActive,
         ];
@@ -91,8 +77,6 @@ class RutaBonus
             $rutabonus[] = new RutaBonus(
                 $r['Title_RutaBonus'],
                 $r['Description_RutaBonus'],
-                $r['Hint_RutaBonus'],
-                $r['PS_RutaBonus'],
                 $r['Image_RutaBonus'],
                 $r['IsActive_RutaBonus'],
                 $r['Id_RutaBonus'],
