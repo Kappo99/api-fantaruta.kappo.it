@@ -89,6 +89,7 @@ class Rutasslifica
                     $r['Num_Rutatore'],
                     $r['Name_Rutatore'],
                     $r['Password_Rutatore'],
+                    $r['Role_Rutatore'],
                     $r['Id_Rutatore'],
                 )
             );
@@ -125,6 +126,7 @@ class Rutasslifica
                     $r['Num_Rutatore'],
                     $r['Name_Rutatore'],
                     $r['Password_Rutatore'],
+                    $r['Role_Rutatore'],
                     $r['Id_Rutatore'],
                 )
             );
@@ -152,6 +154,7 @@ class Rutasslifica
                     $r['Num_Rutatore'],
                     $r['Name_Rutatore'],
                     $r['Password_Rutatore'],
+                    $r['Role_Rutatore'],
                     $r['Id_Rutatore'],
                 )
             );
