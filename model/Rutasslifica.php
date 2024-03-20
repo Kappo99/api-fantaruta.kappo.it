@@ -70,7 +70,7 @@ class Rutasslifica
     {
         $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `Id_Rutatore_Rutasslifica`, 
                         SUM(`MonteRuta_Rutasslifica`) AS `MonteRuta_Rutasslifica`,
-                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Password_Rutatore`
+                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Role_Rutatore`, `Password_Rutatore`
                         FROM `Rutasslifica` 
                             INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
                         GROUP BY `Id_Rutatore`
@@ -106,7 +106,7 @@ class Rutasslifica
     {
         $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `Id_Rutatore_Rutasslifica`, 
                         SUM(`MonteRuta_Rutasslifica`) AS `MonteRuta_Rutasslifica`,
-                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Password_Rutatore`
+                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Role_Rutatore`, `Password_Rutatore`
                         FROM `Rutasslifica` 
                             INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
                         WHERE `Giornata_Rutasslifica` <= ?
@@ -134,7 +134,7 @@ class Rutasslifica
 
         $queryText = 'SELECT `Id_Rutasslifica`, `Giornata_Rutasslifica`, `Id_Rutatore_Rutasslifica`, 
                         SUM(`MonteRuta_Rutasslifica`) AS `MonteRuta_Rutasslifica`,
-                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Password_Rutatore`
+                        `Id_Rutatore`, `Num_Rutatore`, `Name_Rutatore`, `Role_Rutatore`, `Password_Rutatore`
                         FROM `Rutasslifica` 
                             INNER JOIN `Rutatore` ON `Id_Rutatore_Rutasslifica` = `Id_Rutatore`
                         WHERE `Giornata_Rutasslifica` <= ?
