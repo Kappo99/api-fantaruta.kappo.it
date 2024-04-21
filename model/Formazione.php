@@ -48,6 +48,10 @@ class Formazione
     {
         return $this->IdRutazione;
     }
+    public function getBonus_x2(): bool
+    {
+        return $this->Bonus_x2;
+    }
     public function getRutatore(): Rutatore
     {
         return $this->Rutatore;
