@@ -26,7 +26,7 @@ $app->group('/formazioni', function ($group) {
             if (!isset ($formazioni[$r->getIdRutatore()]['rutazioni']))
                 $formazioni[$r->getIdRutatore()]['rutazioni'] = array ();
             $formazioni[$r->getIdRutatore()]['rutazioni'][] = $r->getRutazione()->toArray();
-            $formazioni[$r->getIdRutatore()]['bonus_x2'][] = $r->getBonus_x2();
+            $formazioni[$r->getIdRutatore()]['bonus_x2'] = $r->getBonus_x2();
         }
 
         if ($formazioni)
