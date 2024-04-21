@@ -6,15 +6,17 @@ class Formazione
     private $Giornata;
     private $IdRutatore;
     private $IdRutazione;
+    private $Bonus_x2;
     private $Rutatore;
     private $Rutazione;
 
-    public function __construct(int $Giornata, int $IdRutatore, int $IdRutazione, ?int $Id = null, ?Rutatore $Rutatore = null, ?Rutazione $Rutazione = null)
+    public function __construct(int $Giornata, int $IdRutatore, int $IdRutazione, bool $Bonus_x2, ?int $Id = null, ?Rutatore $Rutatore = null, ?Rutazione $Rutazione = null)
     {
         $this->Id = $Id;
         $this->Giornata = $Giornata;
         $this->IdRutatore = $IdRutatore;
         $this->IdRutazione = $IdRutazione;
+        $this->Bonus_x2 = $Bonus_x2;
         $this->Rutatore = $Rutatore;
         $this->Rutazione = $Rutazione;
     }
@@ -62,6 +64,7 @@ class Formazione
             'Giornata' => $this->Giornata,
             'IdRutatore' => $this->IdRutatore,
             'IdRutazione' => $this->IdRutazione,
+            'Bonus_x2' => $this->Bonus_x2,
             'Rutatore' => $this->Rutatore->toArray(),
             'Rutazione' => $this->Rutazione->toArray(),
         ];
@@ -92,6 +95,7 @@ class Formazione
                 $r['Giornata_Formazione'],
                 $r['Id_Rutatore_Formazione'],
                 $r['Id_Rutazione_Formazione'],
+                $r['Bonus_x2_Formazione'],
                 $r['Id_Formazione'],
                 new Rutatore(
                     $r['Num_Rutatore'],

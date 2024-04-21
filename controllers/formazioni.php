@@ -60,7 +60,7 @@ $app->group('/formazioni', function ($group) {
 
         $formazioni = array();
         foreach ($rutazioni as $idRutazione) {
-            $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione);
+            $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione, false);
         }
 
         $lastId = Formazione::insertFormazioniByList($formazioni);
