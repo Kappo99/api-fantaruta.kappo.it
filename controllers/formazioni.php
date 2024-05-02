@@ -64,8 +64,9 @@ $app->group('/formazioni', function ($group) {
         foreach ($rutazioni as $idRutazione) {
             $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione, false, false);
         }
+        print_r($formazioni);
 
-        $lastId = Formazione::insertFormazioniByList($formazioni);
+        $lastId = 0;//Formazione::insertFormazioniByList($formazioni);
 
         if ($lastId > 0)
             $httpResponse = new HttpResponse(Status::Ok, "INSERT all formazioni to Rutatore", $lastId);
