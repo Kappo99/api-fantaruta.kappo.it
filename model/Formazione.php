@@ -168,11 +168,9 @@ class Formazione
         $values = array();
         foreach ($formazioni as $formazione)
             $values[] = '(' . $formazione->getGiornata() . ',' . $formazione->getIdRutatore() . ',' . $formazione->getIdRutazione() . ',' . ($formazione->getBonus_x5() ? 1 : 0) . ')';
-        // $values = substr($values, 0, strlen($values) - 2);
         $queryText = 'INSERT INTO `Formazione`(`Giornata_Formazione`,`Id_Rutatore_Formazione`,`Id_Rutazione_Formazione`,`Bonus_x5_Formazione`)
                         VALUES ' . implode(',', $values);
         $query = new Query($queryText);
-        print_r($queryText);
         $result = DataBase::executeQuery($query);
 
         return $result;
