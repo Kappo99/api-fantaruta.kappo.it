@@ -60,6 +60,8 @@ $app->group('/formazioni', function ($group) {
         $decodedToken = $request->getAttribute('token');
         $idRutatore = $decodedToken->Id_Rutatore;
 
+        print_r($rutazioni);
+
         $formazioni = array();
         foreach ($rutazioni as $idRutazione) {
             $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione, false, false);
