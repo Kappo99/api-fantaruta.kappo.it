@@ -153,10 +153,10 @@ class Formazione
 
     /**
      * Insert the Formazione List
-     * @param mixed $formazioni Formazione's List
+     * @param array $formazioni Formazione's List
      * @return int id of the last Formazione added
      */
-    public static function insertFormazioniByList(mixed $formazioni): int
+    public static function insertFormazioniByList(array $formazioni): int
     {
         $giornata = $formazioni[0]->getGiornata();
         $idRutatore = $formazioni[0]->getIdRutatore();
@@ -172,6 +172,7 @@ class Formazione
         $queryText = 'INSERT INTO `Formazione`(`Giornata_Formazione`,`Id_Rutatore_Formazione`,`Id_Rutazione_Formazione`,,`Bonus_x5_Formazione`)
                         VALUES ' . implode(',', $values);
         $query = new Query($queryText);
+        print_r($queryText);
         $result = DataBase::executeQuery($query);
 
         return $result;
