@@ -95,6 +95,21 @@ class Formazione
 
         $formazioni = array();
         foreach ($result as $r) {
+            $rutazione = new Rutazione(
+                $r['Num_Rutazione'],
+                $r['Giornata_Rutazione'],
+                $r['Title_Rutazione'],
+                $r['Description_Rutazione'],
+                $r['Rutas_Rutazione'],
+                $r['MonteRuta_Rutazione'],
+                $r['Malus_Rutazione'],
+                $r['MalusText_Rutazione'],
+                $r['Bonus_Rutazione'],
+                $r['BonusText_Rutazione'],
+                $r['IsRutata_Rutazione'],
+                $r['Id_Rutazione'],
+            );
+            $rutazione->setBonus_x5($r['Bonus_x5_Formazione']);
             $formazioni[] = new Formazione(
                 $r['Giornata_Formazione'],
                 $r['Id_Rutatore_Formazione'],
@@ -108,20 +123,7 @@ class Formazione
                     $r['Role_Rutatore'],
                     $r['Id_Rutatore'],
                 ),
-                new Rutazione(
-                    $r['Num_Rutazione'],
-                    $r['Giornata_Rutazione'],
-                    $r['Title_Rutazione'],
-                    $r['Description_Rutazione'],
-                    $r['Rutas_Rutazione'],
-                    $r['MonteRuta_Rutazione'],
-                    $r['Malus_Rutazione'],
-                    $r['MalusText_Rutazione'],
-                    $r['Bonus_Rutazione'],
-                    $r['BonusText_Rutazione'],
-                    $r['IsRutata_Rutazione'],
-                    $r['Id_Rutazione'],
-                ),
+                $rutazione,
             );
         }
 

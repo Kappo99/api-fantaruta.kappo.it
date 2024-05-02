@@ -14,6 +14,7 @@ class Rutazione
     private $Bonus;
     private $BonusText;
     private $IsRutata;
+    private $Bonus_x5;
 
     public function __construct(int $Num, int $Giornata, string $Title, string $Description, int $Rutas, int $MonteRuta, ?int $Malus, ?string $MalusText, ?int $Bonus, ?string $BonusText, bool $IsRutata, ?int $Id = null)
     {
@@ -29,6 +30,7 @@ class Rutazione
         $this->Bonus = $Bonus;
         $this->BonusText = $BonusText;
         $this->IsRutata = $IsRutata;
+        $this->Bonus_x5 = false;
     }
 
     public function __toString(): string
@@ -44,6 +46,10 @@ class Rutazione
     public function setNum(int $Num)
     {
         $this->Num = $Num;
+    }
+    public function setBonus_x5(bool $Bonus_x5)
+    {
+        $this->Bonus_x5 = $Bonus_x5;
     }
 
     public function getId(): int
@@ -94,6 +100,10 @@ class Rutazione
     {
         return $this->IsRutata;
     }
+    public function getBonus_x5(): bool
+    {
+        return $this->Bonus_x5;
+    }
 
     public function toArray(): array
     {
@@ -110,6 +120,7 @@ class Rutazione
             'Bonus' => $this->Bonus,
             'BonusText' => $this->BonusText,
             'IsRutata' => $this->IsRutata,
+            'Bonus_x5' => $this->Bonus_x5,
         ];
     }
 
