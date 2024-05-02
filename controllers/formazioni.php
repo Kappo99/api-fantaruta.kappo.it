@@ -25,6 +25,7 @@ $app->group('/formazioni', function ($group) {
                 $formazioni[$r->getIdRutatore()] = array ('rutatore' => $r->getRutatore()->toArray());
             if (!isset ($formazioni[$r->getIdRutatore()]['rutazioni']))
                 $formazioni[$r->getIdRutatore()]['rutazioni'] = array ();
+            $r->getRutazione()->setBonus_x5($r->getBonus_x5());
             $formazioni[$r->getIdRutatore()]['rutazioni'][] = $r->getRutazione()->toArray();
             $formazioni[$r->getIdRutatore()]['bonus_x2'] = $r->getBonus_x2();
         }
@@ -61,7 +62,7 @@ $app->group('/formazioni', function ($group) {
 
         $formazioni = array();
         foreach ($rutazioni as $idRutazione) {
-            $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione, false);
+            $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione, false, false);
         }
 
         $lastId = Formazione::insertFormazioniByList($formazioni);

@@ -7,16 +7,18 @@ class Formazione
     private $IdRutatore;
     private $IdRutazione;
     private $Bonus_x2;
+    private $Bonus_x5;
     private $Rutatore;
     private $Rutazione;
 
-    public function __construct(int $Giornata, int $IdRutatore, int $IdRutazione, bool $Bonus_x2, ?int $Id = null, ?Rutatore $Rutatore = null, ?Rutazione $Rutazione = null)
+    public function __construct(int $Giornata, int $IdRutatore, int $IdRutazione, bool $Bonus_x2, bool $Bonus_x5, ?int $Id = null, ?Rutatore $Rutatore = null, ?Rutazione $Rutazione = null)
     {
         $this->Id = $Id;
         $this->Giornata = $Giornata;
         $this->IdRutatore = $IdRutatore;
         $this->IdRutazione = $IdRutazione;
         $this->Bonus_x2 = $Bonus_x2;
+        $this->Bonus_x5 = $Bonus_x5;
         $this->Rutatore = $Rutatore;
         $this->Rutazione = $Rutazione;
     }
@@ -52,6 +54,10 @@ class Formazione
     {
         return $this->Bonus_x2;
     }
+    public function getBonus_x5(): bool
+    {
+        return $this->Bonus_x5;
+    }
     public function getRutatore(): Rutatore
     {
         return $this->Rutatore;
@@ -69,6 +75,7 @@ class Formazione
             'IdRutatore' => $this->IdRutatore,
             'IdRutazione' => $this->IdRutazione,
             'Bonus_x2' => $this->Bonus_x2,
+            'Bonus_x5' => $this->Bonus_x5,
             'Rutatore' => $this->Rutatore->toArray(),
             'Rutazione' => $this->Rutazione->toArray(),
         ];
@@ -95,26 +102,27 @@ class Formazione
 
         $formazioni = array();
         foreach ($result as $r) {
-            $rutazione = new Rutazione(
-                $r['Num_Rutazione'],
-                $r['Giornata_Rutazione'],
-                $r['Title_Rutazione'],
-                $r['Description_Rutazione'],
-                $r['Rutas_Rutazione'],
-                $r['MonteRuta_Rutazione'],
-                $r['Malus_Rutazione'],
-                $r['MalusText_Rutazione'],
-                $r['Bonus_Rutazione'],
-                $r['BonusText_Rutazione'],
-                $r['IsRutata_Rutazione'],
-                $r['Id_Rutazione'],
-            );
-            $rutazione->setBonus_x5($r['Bonus_x5_Formazione']);
+            // $rutazione = new Rutazione(
+            //     $r['Num_Rutazione'],
+            //     $r['Giornata_Rutazione'],
+            //     $r['Title_Rutazione'],
+            //     $r['Description_Rutazione'],
+            //     $r['Rutas_Rutazione'],
+            //     $r['MonteRuta_Rutazione'],
+            //     $r['Malus_Rutazione'],
+            //     $r['MalusText_Rutazione'],
+            //     $r['Bonus_Rutazione'],
+            //     $r['BonusText_Rutazione'],
+            //     $r['IsRutata_Rutazione'],
+            //     $r['Id_Rutazione'],
+            // );
+            // $rutazione->setBonus_x5($r['Bonus_x5_Formazione']);
             $formazioni[] = new Formazione(
                 $r['Giornata_Formazione'],
                 $r['Id_Rutatore_Formazione'],
                 $r['Id_Rutazione_Formazione'],
                 $r['Bonus_x2_Formazione'],
+                $r['Bonus_x5_Formazione'],
                 $r['Id_Formazione'],
                 new Rutatore(
                     $r['Num_Rutatore'],
@@ -123,7 +131,20 @@ class Formazione
                     $r['Role_Rutatore'],
                     $r['Id_Rutatore'],
                 ),
-                $rutazione,
+                new Rutazione(
+                    $r['Num_Rutazione'],
+                    $r['Giornata_Rutazione'],
+                    $r['Title_Rutazione'],
+                    $r['Description_Rutazione'],
+                    $r['Rutas_Rutazione'],
+                    $r['MonteRuta_Rutazione'],
+                    $r['Malus_Rutazione'],
+                    $r['MalusText_Rutazione'],
+                    $r['Bonus_Rutazione'],
+                    $r['BonusText_Rutazione'],
+                    $r['IsRutata_Rutazione'],
+                    $r['Id_Rutazione'],
+                ),
             );
         }
 
