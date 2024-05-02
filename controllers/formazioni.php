@@ -60,7 +60,7 @@ $app->group('/formazioni', function ($group) {
         $decodedToken = $request->getAttribute('token');
         $idRutatore = $decodedToken->Id_Rutatore;
 
-        print_r($rutazioni);
+        //* Cerco il valore duplicato per impostare la Rutazione con Bonus x5
         $countValues = []; // Array per tracciare le occorrenze
         $duplicateValue = null; // Variabile per salvare il secondo duplicato
 
@@ -76,15 +76,13 @@ $app->group('/formazioni', function ($group) {
                 $countValues[$value] = 1; // Imposta il contatore a 1 la prima volta che trovi il valore
             }
         }
-        print_r(array($rutazioni, $duplicateValue));
 
         $formazioni = array();
         foreach ($rutazioni as $idRutazione) {
-            $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione, false, false);
+            $formazioni[] = new Formazione($giornata, $idRutatore, $idRutazione, false, $idRutazione == $duplicateValue);
         }
-        print_r($formazioni);
 
-        $lastId = 0;//Formazione::insertFormazioniByList($formazioni);
+        $lastId = Formazione::insertFormazioniByList($formazioni);
 
         if ($lastId > 0)
             $httpResponse = new HttpResponse(Status::Ok, "INSERT all formazioni to Rutatore", $lastId);
