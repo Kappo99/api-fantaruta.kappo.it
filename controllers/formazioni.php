@@ -61,6 +61,22 @@ $app->group('/formazioni', function ($group) {
         $idRutatore = $decodedToken->Id_Rutatore;
 
         print_r($rutazioni);
+        $countValues = []; // Array per tracciare le occorrenze
+        $duplicateValue = null; // Variabile per salvare il secondo duplicato
+
+        foreach ($rutazioni as $key => $value) {
+            if (isset($countValues[$value])) {
+                $countValues[$value]++; // Incrementa il contatore per questo valore
+                if ($countValues[$value] == 2) { // Controlla se è la seconda occorrenza
+                    $duplicateValue = $value; // Salva il valore duplicato
+                    unset($rutazioni[$key]); // Rimuovi il secondo duplicato dall'array
+                    break; // Interrompi il ciclo se non ti interessa trovare altri duplicati
+                }
+            } else {
+                $countValues[$value] = 1; // Imposta il contatore a 1 la prima volta che trovi il valore
+            }
+        }
+        print_r(array($rutazioni, $duplicateValue));
 
         $formazioni = array();
         foreach ($rutazioni as $idRutazione) {
